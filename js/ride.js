@@ -1,4 +1,4 @@
-/*global WildRydes _config*/
+i/*global WildRydes _config*/
 
 var WildRydes = window.WildRydes || {};
 WildRydes.map = WildRydes.map || {};
@@ -38,15 +38,21 @@ WildRydes.map = WildRydes.map || {};
         });
     }
 
+    function getUnicornName() {
+    var bidhans = ['bidhan 1','bidhan 2','bidhan 3'];
+    return bidhans[Math.floor(Math.random()*3)];
+}
+
     function completeRequest(result) {
         var unicorn;
         var pronoun;
+	var name = getUnicornName();
         console.log('Response received from API: ', result);
         unicorn = result.Unicorn;
         pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
-        displayUpdate('Bidhan 2' + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');
+        displayUpdate(name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');
         animateArrival(function animateCallback() {
-            displayUpdate(Bidhan 2 + ' has arrived. Giddy up!');
+            displayUpdate(name + ' has arrived. Giddy up!');
             WildRydes.map.unsetLocation();
             $('#request').prop('disabled', 'disabled');
             $('#request').text('Set Pickup');
